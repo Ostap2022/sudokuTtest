@@ -1,0 +1,68 @@
+<html> 
+  <head>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>  
+  <body>
+    <script type="text/babel" >
+ 
+        function validSolution(board) {
+         
+         for (let row = 0; row < 9; row++) {
+           const rowValues = new Set(board[row]);
+           if (rowValues.size !== 9) {
+             return false;
+           }
+         }
+         
+         
+         for (let col = 0; col < 9; col++) {
+           const colValues = new Set();
+           for (let row = 0; row < 9; row++) {
+             colValues.add(board[row][col]);
+           }
+           if (colValues.size !== 9) {
+             return false;
+           }
+         }
+         
+         
+         for (let blockRow = 0; blockRow < 9; blockRow += 3) {
+           for (let blockCol = 0; blockCol < 9; blockCol += 3) {
+             const blockValues = new Set();
+             for (let row = blockRow; row < blockRow + 3; row++) {
+               for (let col = blockCol; col < blockCol + 3; col++) {
+                 blockValues.add(board[row][col]);
+               }
+             }
+             if (blockValues.size !== 9) {
+               return false;
+             }
+           }
+         }
+         
+         return true;
+       }
+       
+       const sudoku = [
+         [5, 3, 4, 6, 7, 8, 9, 1, 2],
+         [6, 7, 2, 1, 9, 5, 3, 4, 8],
+         [1, 9, 8, 3, 4, 2, 5, 6, 7],
+         [8, 5, 9, 7, 6, 1, 4, 2, 3],
+         [4, 2, 6, 8, 5, 3, 7, 9, 1],
+         [7, 1, 3, 9, 2, 4, 8, 5, 6],
+         [9, 6, 1, 5, 3, 7, 2, 8, 4],
+         [2, 8, 7, 4, 1, 9, 6, 3, 5],
+         [3, 4, 5, 2, 8, 6, 1, 7, 9]
+       ];
+       
+       document.write(validSolution(sudoku)); 
+        
+         
+</script>
+  
+</body>
+  
+  </html>
